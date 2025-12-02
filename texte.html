@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Text Styling Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d30 100%);
+            color: #d4d4d4;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #252526;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #3e3e42;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #569cd6;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #569cd6, #9cdcfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% auto;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .subtitle {
+            color: #9cdcfe;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .playground-btn {
+            background: linear-gradient(to right, #007acc, #569cd6);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .playground-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .playground-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .playground-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 122, 204, 0.5);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .section {
+            background: #252526;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #3e3e42;
+            animation: fadeInUp 0.6s ease;
+            animation-fill-mode: both;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        .section:nth-child(7) { animation-delay: 0.7s; }
+        .section:nth-child(8) { animation-delay: 0.8s; }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: #569cd6;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #007acc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copy-all-btn {
+            background: #2d2d30;
+            color: #9cdcfe;
+            border: 1px solid #3e3e42;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-all-btn:hover {
+            background: #3e3e42;
+            color: #569cd6;
+        }
+        
+        .property-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .property-examples {
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #007acc;
+            position: relative;
+        }
+        
+        .property-code {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            line-height: 1.8;
+            border: 1px solid #3e3e42;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(86, 156, 214, 0.2);
+            color: #9cdcfe;
+            border: 1px solid #3e3e42;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(86, 156, 214, 0.4);
+            color: #569cd6;
+        }
+        
+        .copy-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease, fadeOut 0.5s ease 2s forwards;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+        
+        .example-item {
+            margin: 15px 0;
+            padding: 12px;
+            background: #2d2d30;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-left: 3px solid #007acc;
+            transition: transform 0.3s ease, background 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .example-item:hover {
+            transform: translateX(5px);
+            background: #3e3e42;
+        }
+        
+        /* VS Code-like Syntax Highlighting */
+        .css-selector {
+            color: #d7ba7d;
+        }
+        
+        .css-property {
+            color: #9cdcfe;
+        }
+        
+        .css-value {
+            color: #ce9178;
+        }
+        
+        .css-punctuation {
+            color: #d4d4d4;
+        }
+        
+        .css-comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        .html-tag {
+            color: #569cd6;
+        }
+        
+        .html-attribute {
+            color: #9cdcfe;
+        }
+        
+        .html-value {
+            color: #ce9178;
+        }
+        
+        .html-text {
+            color: #d4d4d4;
+        }
+        
+        .html-comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        /* Font Family Examples */
+        .font-serif { font-family: 'Georgia', 'Times New Roman', serif; }
+        .font-sans { font-family: 'Arial', 'Helvetica', sans-serif; }
+        .font-mono { font-family: 'Courier New', 'Monaco', monospace; }
+        .font-cursive { font-family: 'Brush Script MT', cursive; }
+        
+        /* Font Weight Examples */
+        .weight-100 { font-weight: 100; }
+        .weight-200 { font-weight: 200; }
+        .weight-300 { font-weight: 300; }
+        .weight-400 { font-weight: 400; }
+        .weight-500 { font-weight: 500; }
+        .weight-600 { font-weight: 600; }
+        .weight-700 { font-weight: 700; }
+        .weight-800 { font-weight: 800; }
+        .weight-900 { font-weight: 900; }
+        .weight-bold { font-weight: bold; }
+        .weight-bolder { font-weight: bolder; }
+        
+        /* Font Size Examples */
+        .size-small { font-size: 14px; }
+        .size-medium { font-size: 18px; }
+        .size-large { font-size: 24px; }
+        .size-xlarge { font-size: 32px; }
+        
+        /* Font Style Examples */
+        .style-normal { font-style: normal; }
+        .style-italic { font-style: italic; }
+        .style-oblique { font-style: oblique; }
+        
+        /* Text Transform Examples */
+        .transform-none { text-transform: none; }
+        .transform-capitalize { text-transform: capitalize; }
+        .transform-uppercase { text-transform: uppercase; }
+        .transform-lowercase { text-transform: lowercase; }
+        
+        /* Text Decoration Examples */
+        .decoration-underline { text-decoration: underline; }
+        .decoration-overline { text-decoration: overline; }
+        .decoration-line-through { text-decoration: line-through; }
+        
+        /* Text Align Examples */
+        .align-left { text-align: left; }
+        .align-center { text-align: center; }
+        .align-right { text-align: right; }
+        
+        .special-element {
+            margin: 10px 0;
+            padding: 15px;
+            background: #2d2d30;
+            border-radius: 8px;
+            border-left: 3px solid #007acc;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #9cdcfe;
+            position: relative;
+        }
+        
+        .footer-text {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(86, 156, 214, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .footer-text:hover::before {
+            left: 100%;
+        }
+        
+        .footer-text:hover {
+            background: rgba(86, 156, 214, 0.1);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 20px rgba(86, 156, 214, 0.3);
+        }
+        
+        .creator-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #252526;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid #007acc;
+            z-index: 1000;
+            max-width: 500px;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        .message-content {
+            color: #9cdcfe;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .github-btn {
+            background: linear-gradient(to right, #007acc, #569cd6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .github-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 122, 204, 0.4);
+        }
+        
+        .close-message {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #9cdcfe;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .close-message:hover {
+            color: #569cd6;
+            transform: rotate(90deg);
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            backdrop-filter: blur(3px);
+        }
+        
+        /* Celebration Effects */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            opacity: 0;
+            z-index: 1001;
+            pointer-events: none;
+        }
+        
+        .celebration-text {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            z-index: 1001;
+            opacity: 0;
+            pointer-events: none;
+            text-shadow: 0 0 10px #ffd700;
+        }
+        
+        @media (max-width: 768px) {
+            .property-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .creator-message {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            .playground-editors {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Enhanced Playground Modal Styles - COMPLETELY REBUILT */
+        .playground-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .playground-content {
+            background: #1e1e1e;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .playground-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: #252526;
+            border-bottom: 1px solid #3e3e42;
+            flex-shrink: 0;
+        }
+        
+        .playground-header h2 {
+            color: #569cd6;
+            font-size: 1.5rem;
+        }
+        
+        .close-btn {
+            background: #d9534f;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: #c9302c;
+            transform: translateY(-2px);
+        }
+        
+        .playground-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            height: calc(100vh - 120px);
+        }
+        
+        .playground-editors {
+            display: flex;
+            width: 70%;
+            height: 100%;
+            flex-direction: column;
+        }
+        
+        .editor-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #3e3e42;
+            overflow: hidden;
+            min-height: 200px;
+        }
+        
+        .editor-section:last-child {
+            border-bottom: none;
+        }
+        
+        .editor-title {
+            color: #9cdcfe;
+            padding: 10px 15px;
+            background: #252526;
+            border-bottom: 1px solid #3e3e42;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .editor-title span {
+            font-size: 0.8rem;
+            color: #6a9955;
+        }
+        
+        /* FIXED EDITOR CONTAINER - PROPER CODE EDITOR */
+        .editor-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .editor-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            tab-size: 2;
+        }
+        
+        .line-numbers {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            background: #1e1e1e;
+            color: #6a9955;
+            text-align: right;
+            padding: 10px 5px;
+            border-right: 1px solid #3e3e42;
+            user-select: none;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow: hidden;
+        }
+        
+        .code-editor {
+            position: absolute;
+            left: 40px;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: transparent;
+            color: #d4d4d4;
+            border: none;
+            padding: 10px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: none;
+            white-space: pre;
+            overflow: auto;
+            outline: none;
+            tab-size: 2;
+        }
+        
+        .code-editor::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        .code-editor::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        
+        .code-editor::-webkit-scrollbar-thumb {
+            background: #3e3e42;
+            border-radius: 5px;
+        }
+        
+        .code-editor::-webkit-scrollbar-thumb:hover {
+            background: #4e4e52;
+        }
+        
+        .playground-preview {
+            width: 30%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #3e3e42;
+        }
+        
+        .preview-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .preview-content {
+            flex: 1;
+            background: white;
+            color: #333;
+            padding: 20px;
+            overflow: auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .playground-controls {
+            padding: 15px;
+            background: #252526;
+            border-top: 1px solid #3e3e42;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .auto-update {
+            display: flex;
+            align-items: center;
+            color: #9cdcfe;
+            font-size: 0.9rem;
+            margin-right: auto;
+        }
+        
+        .auto-update input {
+            margin-right: 8px;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 15px;
+            background: #252526;
+            border-top: 1px solid #3e3e42;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .example-card {
+            background: #2d2d30;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #3e3e42;
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            background: #3e3e42;
+            transform: translateY(-2px);
+            border-color: #569cd6;
+        }
+        
+        .example-title {
+            color: #569cd6;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .example-desc {
+            color: #d4d4d4;
+            font-size: 0.8rem;
+        }
+        
+        /* Syntax highlighting for the editors */
+        .token-tag {
+            color: #569cd6;
+        }
+        
+        .token-attr {
+            color: #9cdcfe;
+        }
+        
+        .token-value {
+            color: #ce9178;
+        }
+        
+        .token-string {
+            color: #ce9178;
+        }
+        
+        .token-comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        .token-selector {
+            color: #d7ba7d;
+        }
+        
+        .token-property {
+            color: #9cdcfe;
+        }
+        
+        .token-punctuation {
+            color: #d4d4d4;
+        }
+        
+        .token-keyword {
+            color: #569cd6;
+        }
+        
+        .token-function {
+            color: #dcdcaa;
+        }
+        
+        .token-number {
+            color: #b5cea8;
+        }
+        
+        /* GitHub Watermark */
+        .github-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            opacity: 0.7;
+            transition: all 0.4s ease;
+        }
+        
+        .github-watermark:hover {
+            opacity: 1;
+            transform: scale(1.05) rotate(5deg);
+        }
+        
+        .github-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #9cdcfe;
+            background: rgba(30, 30, 30, 0.9);
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid #3e3e42;
+            transition: all 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background: rgba(37, 37, 38, 0.95);
+            box-shadow: 0 5px 15px rgba(0, 122, 204, 0.3);
+        }
+        
+        .github-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            fill: #9cdcfe;
+        }
+        
+        .github-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Loading animation */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid #3e3e42;
+            border-top: 5px solid #569cd6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 1002;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Resize handle */
+        .resize-handle {
+            position: absolute;
+            left: calc(70% - 2px);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #007acc;
+            cursor: col-resize;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .resize-handle:hover,
+        .resize-handle.dragging {
+            opacity: 1;
+        }
+        
+        /* Status bar */
+        .status-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #007acc;
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        /* Tab support */
+        .editor-tabs {
+            display: flex;
+            background: #252526;
+            border-bottom: 1px solid #3e3e42;
+        }
+        
+        .editor-tab {
+            padding: 8px 15px;
+            background: #1e1e1e;
+            color: #9cdcfe;
+            border: 1px solid #3e3e42;
+            border-bottom: none;
+            cursor: pointer;
+            margin-right: 2px;
+            border-radius: 4px 4px 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .editor-tab.active {
+            background: #2d2d30;
+            color: #569cd6;
+            border-color: #007acc;
+        }
+        
+        /* Hint tooltip */
+        .hint {
+            position: absolute;
+            background: #007acc;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+        }
+        
+        .hint.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Celebration Elements -->
+    <div id="celebration-container"></div>
+    <div class="celebration-text" id="celebration-text">🎉 Amazing! 🎉</div>
+    
+    <!-- Loader -->
+    <div class="loader" id="loader"></div>
+    
+    <!-- Creator Message Modal -->
+    <div class="overlay" id="overlay"></div>
+    <div class="creator-message" id="creator-message">
+        <button class="close-message" id="close-message">×</button>
+        <div class="message-content">
+            <h3>Hello! I'm the creator of this page 👋</h3>
+            <p>This complete text styling guide was created entirely by myself using HTML, CSS, and JavaScript.</p>
+            <p>If you want to see more HTML/CSS projects and tutorials, feel free to visit my GitHub page!</p>
+        </div>
+        <a href="https://github.com/amineTNYT" class="github-btn" target="_blank">Visit My GitHub</a>
+    </div>
+
+    <!-- GitHub Watermark -->
+    <div class="github-watermark">
+        <a href="https://github.com/amineTNYT" class="github-link" target="_blank">
+            <svg class="github-icon" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span class="github-text">amineTNYT</span>
+        </a>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Complete Text Styling Guide</h1>
+            <p class="subtitle">Clear examples with VS Code-like syntax highlighting</p>
+            <button class="playground-btn" id="playground-btn">Try Interactive Playground →</button>
+        </header>
+        
+        <div class="content">
+            <!-- Font Weight Section -->
+            <div class="section">
+                <h2 class="section-title">Font Weight
+                    <button class="copy-all-btn" data-section="weight">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="example-item weight-100">Thin text - 100</div>
+                        <div class="example-item weight-200">Extra Light - 200</div>
+                        <div class="example-item weight-300">Light text - 300</div>
+                        <div class="example-item weight-400">Normal text - 400</div>
+                        <div class="example-item weight-500">Medium text - 500</div>
+                        <div class="example-item weight-600">Semi Bold - 600</div>
+                        <div class="example-item weight-700">Bold text - 700</div>
+                        <div class="example-item weight-800">Extra Bold - 800</div>
+                        <div class="example-item weight-900">Black text - 900</div>
+                        <div class="example-item weight-bold">Bold (keyword)</div>
+                        <div class="example-item weight-bolder">Bolder (keyword)</div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="weight-code">Copy</button>
+                        <div id="weight-code">
+                            <div><span class="css-selector">.thin-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-weight</span><span class="css-punctuation">:</span> <span class="css-value">100</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.light-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-weight</span><span class="css-punctuation">:</span> <span class="css-value">300</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.normal-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-weight</span><span class="css-punctuation">:</span> <span class="css-value">400</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.bold-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-weight</span><span class="css-punctuation">:</span> <span class="css-value">700</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.bolder-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-weight</span><span class="css-punctuation">:</span> <span class="css-value">900</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.keyword-bold</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-weight</span><span class="css-punctuation">:</span> <span class="css-value">bold</span><span class="css-punctuation">;</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-comment">/* Same as 700 */</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.keyword-bolder</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-weight</span><span class="css-punctuation">:</span> <span class="css-value">bolder</span><span class="css-punctuation">;</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-comment">/* Bolder than parent */</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Font Family Section -->
+            <div class="section">
+                <h2 class="section-title">Font Family
+                    <button class="copy-all-btn" data-section="family">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="example-item font-serif">Serif Font - Georgia, Times New Roman</div>
+                        <div class="example-item font-sans">Sans-serif Font - Arial, Helvetica</div>
+                        <div class="example-item font-mono">Monospace Font - Courier New, Monaco</div>
+                        <div class="example-item font-cursive">Cursive Font - Brush Script MT</div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="family-code">Copy</button>
+                        <div id="family-code">
+                            <h3>CSS Code:</h3>
+                            <div><span class="css-selector">.serif-font</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-family</span><span class="css-punctuation">:</span> <span class="css-value">Georgia, Times New Roman, serif</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.sans-font</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-family</span><span class="css-punctuation">:</span> <span class="css-value">Arial, Helvetica, sans-serif</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.mono-font</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-family</span><span class="css-punctuation">:</span> <span class="css-value">'Courier New', Monaco, monospace</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Font Size Section -->
+            <div class="section">
+                <h2 class="section-title">Font Size
+                    <button class="copy-all-btn" data-section="size">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="example-item size-small">Small text - 14px</div>
+                        <div class="example-item size-medium">Medium text - 18px</div>
+                        <div class="example-item size-large">Large text - 24px</div>
+                        <div class="example-item size-xlarge">Extra large text - 32px</div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="size-code">Copy</button>
+                        <div id="size-code">
+                            <h3>CSS Code:</h3>
+                            <div><span class="css-selector">.small-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-size</span><span class="css-punctuation">:</span> <span class="css-value">14px</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.medium-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-size</span><span class="css-punctuation">:</span> <span class="css-value">18px</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.large-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-size</span><span class="css-punctuation">:</span> <span class="css-value">24px</span<span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Font Style Section -->
+            <div class="section">
+                <h2 class="section-title">Font Style
+                    <button class="copy-all-btn" data-section="style">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="example-item style-normal">Normal font style</div>
+                        <div class="example-item style-italic">Italic font style</div>
+                        <div class="example-item style-oblique">Oblique font style</div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="style-code">Copy</button>
+                        <div id="style-code">
+                            <h3>CSS Code:</h3>
+                            <div><span class="css-selector">.normal-style</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-style</span><span class="css-punctuation">:</span> <span class="css-value">normal</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.italic-text</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">font-style</span><span class="css-punctuation">:</span> <span class="css-value">italic</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Text Transform Section -->
+            <div class="section">
+                <h2 class="section-title">Text Transform
+                    <button class="copy-all-btn" data-section="transform">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="example-item transform-none">none - original text</div>
+                        <div class="example-item transform-capitalize">capitalize - first letter of each word</div>
+                        <div class="example-item transform-uppercase">uppercase - all capital letters</div>
+                        <div class="example-item transform-lowercase">LOWERCASE - ALL SMALL LETTERS</div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="transform-code">Copy</button>
+                        <div id="transform-code">
+                            <h3>CSS Code:</h3>
+                            <div><span class="css-selector">.capitalize</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-transform</span><span class="css-punctuation">:</span> <span class="css-value">capitalize</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.uppercase</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-transform</span><span class="css-punctuation">:</span> <span class="css-value">uppercase</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.lowercase</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-transform</span><span class="css-punctuation">:</span> <span class="css-value">lowercase</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Text Decoration Section -->
+            <div class="section">
+                <h2 class="section-title">Text Decoration
+                    <button class="copy-all-btn" data-section="decoration">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="example-item decoration-underline">Underlined text</div>
+                        <div class="example-item decoration-overline">Overlined text</div>
+                        <div class="example-item decoration-line-through">Line-through text</div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="decoration-code">Copy</button>
+                        <div id="decoration-code">
+                            <h3>CSS Code:</h3>
+                            <div><span class="css-selector">.underline</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-decoration</span><span class="css-punctuation">:</span> <span class="css-value">underline</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.line-through</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-decoration</span><span class="css-punctuation">:</span> <span class="css-value">line-through</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Text Align Section -->
+            <div class="section">
+                <h2 class="section-title">Text Align
+                    <button class="copy-all-btn" data-section="align">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="example-item align-left">Left aligned text</div>
+                        <div class="example-item align-center">Center aligned text</div>
+                        <div class="example-item align-right">Right aligned text</div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="align-code">Copy</button>
+                        <div id="align-code">
+                            <h3>CSS Code:</h3>
+                            <div><span class="css-selector">.left-align</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-align</span><span class="css-punctuation">:</span> <span class="css-value">left</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.center-align</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-align</span><span class="css-punctuation">:</span> <span class="css-value">center</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                            <br>
+                            <div><span class="css-selector">.right-align</span> <span class="css-punctuation">{</span></div>
+                            <div>&nbsp;&nbsp;<span class="css-property">text-align</span><span class="css-punctuation">:</span> <span class="css-value">right</span><span class="css-punctuation">;</span></div>
+                            <div><span class="css-punctuation">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Elements Section -->
+            <div class="section">
+                <h2 class="section-title">Special HTML Elements
+                    <button class="copy-all-btn" data-section="special">Copy All Examples</button>
+                </h2>
+                <div class="property-group">
+                    <div class="property-examples">
+                        <h3>Examples:</h3>
+                        <div class="special-element">
+                            <p>This is a <q>short quotation</q> using &lt;q&gt; tag</p>
+                        </div>
+                        <div class="special-element">
+                            <blockquote>This is a blockquote using &lt;blockquote&gt; tag for longer quotes</blockquote>
+                        </div>
+                        <div class="special-element">
+                            <p>This text has <del>deleted content</del> and <ins>inserted content</ins></p>
+                        </div>
+                    </div>
+                    <div class="property-code">
+                        <button class="copy-btn" data-target="special-code">Copy</button>
+                        <div id="special-code">
+                            <h3>HTML Code:</h3>
+                            <div><span class="html-tag">&lt;p&gt;</span></div>
+                            <div>&nbsp;&nbsp;<span class="html-text">This is a </span><span class="html-tag">&lt;q&gt;</span><span class="html-text">short quotation</span><span class="html-tag">&lt;/q&gt;</span></div>
+                            <div><span class="html-tag">&lt;/p&gt;</span></div>
+                            <br>
+                            <div><span class="html-tag">&lt;blockquote&gt;</span></div>
+                            <div>&nbsp;&nbsp;<span class="html-text">This is a blockquote</span></div>
+                            <div><span class="html-tag">&lt;/blockquote&gt;</span></div>
+                            <br>
+                            <div><span class="html-tag">&lt;p&gt;</span></div>
+                            <div>&nbsp;&nbsp;<span class="html-text">This has </span><span class="html-tag">&lt;del&gt;</span><span class="html-text">deleted</span><span class="html-tag">&lt;/del&gt;</span><span class="html-text"> and </span><span class="html-tag">&lt;ins&gt;</span><span class="html-text">inserted</span><span class="html-tag">&lt;/ins&gt;</span><span class="html-text"> text</span></div>
+                            <div><span class="html-tag">&lt;/p&gt;</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-text" id="footer-text">
+                <p>Click here to learn more about the creator!</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Playground Modal - COMPLETELY REBUILT -->
+    <div class="playground-modal" id="playground-modal">
+        <div class="playground-content">
+            <div class="playground-header">
+                <h2>Interactive Playground</h2>
+                <button class="close-btn" id="close-btn">Close Playground</button>
+            </div>
+            
+            <div class="playground-body">
+                <div class="playground-editors">
+                    <div class="editor-section">
+                        <div class="editor-title">
+                            <span>HTML</span>
+                            <span id="html-status">Ready</span>
+                        </div>
+                        <div class="editor-container" id="html-editor-container">
+                            <div class="line-numbers" id="html-line-numbers">1</div>
+                            <textarea class="code-editor" id="html-editor" spellcheck="false">&lt;div class="demo"&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;p&gt;This is a demo text. Try changing me!&lt;/p&gt;
+  &lt;button class="btn"&gt;Click Me&lt;/button&gt;
+&lt;/div&gt;</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="editor-title">
+                            <span>CSS</span>
+                            <span id="css-status">Ready</span>
+                        </div>
+                        <div class="editor-container" id="css-editor-container">
+                            <div class="line-numbers" id="css-line-numbers">1</div>
+                            <textarea class="code-editor" id="css-editor" spellcheck="false">.demo {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.demo h1 {
+  color: #569cd6;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.demo p {
+  color: #333;
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+
+.btn {
+  background: #007acc;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #005a9e;
+}</textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resize-handle" id="resize-handle"></div>
+                
+                <div class="playground-preview">
+                    <div class="preview-section">
+                        <div class="editor-title">Live Preview</div>
+                        <div class="preview-content" id="preview-output"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="playground-controls">
+                <div class="auto-update">
+                    <input type="checkbox" id="auto-update" checked>
+                    <label for="auto-update">Auto-update preview</label>
+                </div>
+                <button class="playground-btn" id="update-btn" style="padding: 8px 16px; font-size: 14px;">Update Preview</button>
+                <button class="playground-btn" id="clear-btn" style="padding: 8px 16px; font-size: 14px; background: linear-gradient(to right, #d9534f, #c9302c);">Clear All</button>
+                <button class="playground-btn" id="format-btn" style="padding: 8px 16px; font-size: 14px; background: linear-gradient(to right, #5cb85c, #4CAF50);">Format Code</button>
+            </div>
+            
+            <div class="examples-grid">
+                <div class="example-card" data-example="1">
+                    <div class="example-title">Font Weights</div>
+                    <div class="example-desc">Try different font weights from 100 to 900</div>
+                </div>
+                <div class="example-card" data-example="2">
+                    <div class="example-title">Text Transform</div>
+                    <div class="example-desc">Uppercase, lowercase, and capitalize examples</div>
+                </div>
+                <div class="example-card" data-example="3">
+                    <div class="example-title">Font Families</div>
+                    <div class="example-desc">Serif, sans-serif, and monospace fonts</div>
+                </div>
+                <div class="example-card" data-example="4">
+                    <div class="example-title">Special Elements</div>
+                    <div class="example-desc">Blockquote, del, ins elements</div>
+                </div>
+                <div class="example-card" data-example="5">
+                    <div class="example-title">Responsive Text</div>
+                    <div class="example-desc">Text that adapts to screen size</div>
+                </div>
+                <div class="example-card" data-example="6">
+                    <div class="example-title">Google Fonts</div>
+                    <div class="example-desc">Using external fonts from Google</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Playground functionality - COMPLETELY REBUILT
+        document.addEventListener('DOMContentLoaded', function() {
+            const playgroundBtn = document.getElementById('playground-btn');
+            const closeBtn = document.getElementById('close-btn');
+            const updateBtn = document.getElementById('update-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const formatBtn = document.getElementById('format-btn');
+            const playgroundModal = document.getElementById('playground-modal');
+            const exampleCards = document.querySelectorAll('.example-card');
+            const htmlEditor = document.getElementById('html-editor');
+            const cssEditor = document.getElementById('css-editor');
+            const htmlLineNumbers = document.getElementById('html-line-numbers');
+            const cssLineNumbers = document.getElementById('css-line-numbers');
+            const htmlStatus = document.getElementById('html-status');
+            const cssStatus = document.getElementById('css-status');
+            const autoUpdateCheckbox = document.getElementById('auto-update');
+            const resizeHandle = document.getElementById('resize-handle');
+            
+            // Footer message functionality
+            const footerText = document.getElementById('footer-text');
+            const creatorMessage = document.getElementById('creator-message');
+            const closeMessage = document.getElementById('close-message');
+            const overlay = document.getElementById('overlay');
+            
+            // Copy functionality for main page
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            const copyAllButtons = document.querySelectorAll('.copy-all-btn');
+            
+            // Initialize editors
+            updateLineNumbers(htmlEditor, htmlLineNumbers);
+            updateLineNumbers(cssEditor, cssLineNumbers);
+            applySyntaxHighlighting(htmlEditor, 'html');
+            applySyntaxHighlighting(cssEditor, 'css');
+            updatePreview();
+            
+            // Open playground
+            playgroundBtn.addEventListener('click', function() {
+                playgroundModal.style.display = 'block';
+                updatePreview();
+            });
+            
+            // Close playground
+            closeBtn.addEventListener('click', function() {
+                playgroundModal.style.display = 'none';
+            });
+            
+            // Update preview button
+            updateBtn.addEventListener('click', updatePreview);
+            
+            // Clear all button
+            clearBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear all code?')) {
+                    htmlEditor.value = '';
+                    cssEditor.value = '';
+                    updateLineNumbers(htmlEditor, htmlLineNumbers);
+                    updateLineNumbers(cssEditor, cssLineNumbers);
+                    applySyntaxHighlighting(htmlEditor, 'html');
+                    applySyntaxHighlighting(cssEditor, 'css');
+                    updatePreview();
+                }
+            });
+            
+            // Format code button
+            formatBtn.addEventListener('click', function() {
+                formatCode(htmlEditor, 'html');
+                formatCode(cssEditor, 'css');
+                updateLineNumbers(htmlEditor, htmlLineNumbers);
+                updateLineNumbers(cssEditor, cssLineNumbers);
+                applySyntaxHighlighting(htmlEditor, 'html');
+                applySyntaxHighlighting(cssEditor, 'css');
+                updatePreview();
+            });
+            
+            // Load examples
+            exampleCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    loadExample(this.getAttribute('data-example'));
+                });
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === playgroundModal) {
+                    playgroundModal.style.display = 'none';
+                }
+            });
+            
+            // Footer text click event with celebration
+            footerText.addEventListener('click', function() {
+                creatorMessage.style.display = 'block';
+                overlay.style.display = 'block';
+                
+                // Trigger celebration effect
+                triggerCelebration();
+            });
+            
+            // Close message
+            closeMessage.addEventListener('click', function() {
+                creatorMessage.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+            
+            // Close message when clicking overlay
+            overlay.addEventListener('click', function() {
+                creatorMessage.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+            
+            // Auto-update preview
+            let autoUpdate = true;
+            let updateTimeout;
+            autoUpdateCheckbox.addEventListener('change', function() {
+                autoUpdate = this.checked;
+            });
+            
+            // Editor event listeners
+            htmlEditor.addEventListener('input', function() {
+                updateLineNumbers(htmlEditor, htmlLineNumbers);
+                applySyntaxHighlighting(htmlEditor, 'html');
+                checkForErrors(htmlEditor, 'html', htmlStatus);
+                
+                if (autoUpdate) {
+                    clearTimeout(updateTimeout);
+                    updateTimeout = setTimeout(updatePreview, 500);
+                }
+            });
+            
+            cssEditor.addEventListener('input', function() {
+                updateLineNumbers(cssEditor, cssLineNumbers);
+                applySyntaxHighlighting(cssEditor, 'css');
+                checkForErrors(cssEditor, 'css', cssStatus);
+                
+                if (autoUpdate) {
+                    clearTimeout(updateTimeout);
+                    updateTimeout = setTimeout(updatePreview, 500);
+                }
+            });
+            
+            // Tab support in editors
+            htmlEditor.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    insertTextAtCursor(this, '  ');
+                }
+                
+                // Auto-close tags
+                if (e.key === '>') {
+                    autoCloseTag(this, e);
+                }
+            });
+            
+            cssEditor.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    insertTextAtCursor(this, '  ');
+                }
+                
+                // Auto-close braces
+                if (e.key === '{') {
+                    e.preventDefault();
+                    insertTextAtCursor(this, '{}');
+                    this.selectionStart = this.selectionEnd - 1;
+                }
+            });
+            
+            // Resize handle
+            let isResizing = false;
+            resizeHandle.addEventListener('mousedown', function(e) {
+                isResizing = true;
+                document.addEventListener('mousemove', handleResize);
+                document.addEventListener('mouseup', stopResize);
+                resizeHandle.classList.add('dragging');
+            });
+            
+            function handleResize(e) {
+                if (!isResizing) return;
+                
+                const playgroundBody = document.querySelector('.playground-body');
+                const width = (e.clientX / playgroundBody.clientWidth) * 100;
+                
+                if (width > 30 && width < 90) {
+                    document.querySelector('.playground-editors').style.width = width + '%';
+                    document.querySelector('.playground-preview').style.width = (100 - width) + '%';
+                    resizeHandle.style.left = `calc(${width}% - 2px)`;
+                }
+            }
+            
+            function stopResize() {
+                isResizing = false;
+                document.removeEventListener('mousemove', handleResize);
+                document.removeEventListener('mouseup', stopResize);
+                resizeHandle.classList.remove('dragging');
+            }
+            
+            // Copy buttons for main page
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const codeElement = document.getElementById(targetId);
+                    const textToCopy = codeElement.textContent;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        showCopySuccess('Code copied to clipboard!');
+                        this.textContent = '✓ Copied!';
+                        this.style.background = '#4CAF50';
+                        
+                        setTimeout(() => {
+                            this.textContent = 'Copy';
+                            this.style.background = '';
+                        }, 2000);
+                    });
+                });
+            });
+            
+            copyAllButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.closest('.section');
+                    const examples = section.querySelectorAll('.example-item, .special-element');
+                    const codeBlocks = section.querySelectorAll('.property-code div');
+                    
+                    let allText = '';
+                    examples.forEach(example => {
+                        allText += example.textContent + '\n';
+                    });
+                    
+                    allText += '\n--- CODE ---\n\n';
+                    
+                    codeBlocks.forEach(block => {
+                        if (block.textContent.trim()) {
+                            allText += block.textContent + '\n';
+                        }
+                    });
+                    
+                    navigator.clipboard.writeText(allText).then(() => {
+                        showCopySuccess('All examples copied!');
+                        this.textContent = '✓ All Copied!';
+                        this.style.background = '#4CAF50';
+                        
+                        setTimeout(() => {
+                            this.textContent = 'Copy All Examples';
+                            this.style.background = '';
+                        }, 2000);
+                    });
+                });
+            });
+        });
+        
+        function updateLineNumbers(textarea, lineNumbersElement) {
+            const lines = textarea.value.split('\n').length;
+            let numbersHtml = '';
+            
+            for (let i = 1; i <= Math.max(lines, 1); i++) {
+                numbersHtml += i + '<br>';
+            }
+            
+            lineNumbersElement.innerHTML = numbersHtml;
+            
+            // Sync scroll
+            lineNumbersElement.scrollTop = textarea.scrollTop;
+        }
+        
+        function applySyntaxHighlighting(textarea, type) {
+            // We'll apply highlighting by updating a background element
+            // For now, we'll just update the textarea's style
+            // In a real implementation, we'd use a separate div for highlighting
+            
+            const text = textarea.value;
+            let highlighted = '';
+            
+            if (type === 'html') {
+                // Simple HTML highlighting
+                highlighted = text
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/&lt;(\/?)(\w+)([^&]*)&gt;/g, '<span class="token-tag">&lt;$1$2$3&gt;</span>')
+                    .replace(/(\w+)=/g, '<span class="token-attr">$1</span>=')
+                    .replace(/"[^"]*"/g, '<span class="token-value">$&</span>')
+                    .replace(/\/\/.*$/gm, '<span class="token-comment">$&</span>');
+            } else if (type === 'css') {
+                // Simple CSS highlighting
+                highlighted = text
+                    .replace(/([\.#]?[\w-]+)\s*\{/g, '<span class="token-selector">$1</span> {')
+                    .replace(/([\w-]+)\s*:/g, '<span class="token-property">$1</span>:')
+                    .replace(/:\s*([^;}]+)/g, ': <span class="token-value">$1</span>')
+                    .replace(/\/\*[\s\S]*?\*\//g, '<span class="token-comment">$&</span>')
+                    .replace(/(\d+)/g, '<span class="token-number">$1</span>');
+            }
+            
+            // For now, we'll just update a data attribute
+            // A proper implementation would use a separate highlighting layer
+            textarea.setAttribute('data-highlighted', highlighted);
+        }
+        
+        function checkForErrors(textarea, type, statusElement) {
+            const text = textarea.value;
+            let errors = 0;
+            let status = 'Ready';
+            
+            if (type === 'html') {
+                // Check for unclosed tags
+                const openTags = (text.match(/<(\w+)[^>]*>/g) || []).length;
+                const closeTags = (text.match(/<\/(\w+)>/g) || []).length;
+                errors = Math.abs(openTags - closeTags);
+                
+                // Check for unclosed attributes
+                const unclosedAttrs = (text.match(/<[^>]*$/g) || []).length;
+                errors += unclosedAttrs;
+                
+                if (errors > 0) {
+                    status = `${errors} error${errors > 1 ? 's' : ''}`;
+                    statusElement.style.color = '#d9534f';
+                } else {
+                    statusElement.style.color = '#6a9955';
+                }
+            } else if (type === 'css') {
+                // Check for unclosed braces
+                const openBraces = (text.match(/\{/g) || []).length;
+                const closeBraces = (text.match(/\}/g) || []).length;
+                errors = Math.abs(openBraces - closeBraces);
+                
+                // Check for missing semicolons
+                const lines = text.split('\n');
+                let missingSemicolons = 0;
+                lines.forEach(line => {
+                    if (line.includes(':') && !line.includes(';') && !line.trim().endsWith('}') && line.trim()) {
+                        missingSemicolons++;
+                    }
+                });
+                errors += missingSemicolons;
+                
+                if (errors > 0) {
+                    status = `${errors} error${errors > 1 ? 's' : ''}`;
+                    statusElement.style.color = '#d9534f';
+                } else {
+                    statusElement.style.color = '#6a9955';
+                }
+            }
+            
+            statusElement.textContent = status;
+            return errors;
+        }
+        
+        function updatePreview() {
+            const html = document.getElementById('html-editor').value;
+            const css = document.getElementById('css-editor').value;
+            const preview = document.getElementById('preview-output');
+            
+            // Show loader
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block';
+            
+            setTimeout(() => {
+                preview.innerHTML = html;
+                
+                // Remove existing style element if any
+                const existingStyle = document.getElementById('playground-style');
+                if (existingStyle) {
+                    existingStyle.remove();
+                }
+                
+                // Add new style element
+                const style = document.createElement('style');
+                style.id = 'playground-style';
+                style.textContent = css;
+                document.head.appendChild(style);
+                
+                // Hide loader
+                loader.style.display = 'none';
+            }, 100);
+        }
+        
+        function loadExample(num) {
+            const examples = {
+                1: {
+                    html: `<div class="weight-demo">
+  <p style="font-weight: 100">Font Weight 100 (Thin)</p>
+  <p style="font-weight: 400">Font Weight 400 (Normal)</p>
+  <p style="font-weight: 700">Font Weight 700 (Bold)</p>
+  <p style="font-weight: 900">Font Weight 900 (Black)</p>
+  <p style="font-weight: bold">Font Weight: bold</p>
+  <p style="font-weight: bolder">Font Weight: bolder</p>
+</div>`,
+                    css: `.weight-demo {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.weight-demo p {
+  padding: 10px;
+  margin: 8px 0;
+  background: white;
+  border-radius: 5px;
+  border-left: 4px solid #007acc;
+}`
+                },
+                2: {
+                    html: `<div class="transform-demo">
+  <p style="text-transform: none">Original Text (none)</p>
+  <p style="text-transform: capitalize">this text is capitalized</p>
+  <p style="text-transform: uppercase">this text is uppercase</p>
+  <p style="text-transform: lowercase">THIS TEXT IS LOWERCASE</p>
+</div>`,
+                    css: `.transform-demo {
+  padding: 20px;
+  background: #f0f8ff;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+}
+.transform-demo p {
+  padding: 12px;
+  margin: 10px 0;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}`
+                },
+                3: {
+                    html: `<div class="font-family-demo">
+  <p style="font-family: Georgia, serif">Serif Font - Georgia</p>
+  <p style="font-family: Arial, sans-serif">Sans-serif Font - Arial</p>
+  <p style="font-family: 'Courier New', monospace">Monospace Font - Courier New</p>
+</div>`,
+                    css: `.font-family-demo {
+  padding: 20px;
+  background: #fffaf0;
+  border-radius: 10px;
+}
+.font-family-demo p {
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 8px;
+  font-size: 1.1em;
+}`
+                },
+                4: {
+                    html: `<div class="special-elements-demo">
+  <p>This is a <q>short quotation</q> using &lt;q&gt; tag</p>
+  <blockquote>This is a blockquote using &lt;blockquote&gt; tag for longer quotes</blockquote>
+  <p>This text has <del>deleted content</del> and <ins>inserted content</ins></p>
+</div>`,
+                    css: `.special-elements-demo {
+  padding: 25px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+.special-elements-demo p, .special-elements-demo blockquote {
+  margin: 15px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+.special-elements-demo blockquote {
+  border-left: 5px solid #007acc;
+  padding-left: 20px;
+  font-style: italic;
+  color: #555;
+}`
+                },
+                5: {
+                    html: `<div class="responsive-text-demo">
+  <h1>Responsive Heading</h1>
+  <p class="responsive-paragraph">This text will adjust based on screen size. Try resizing the preview area!</p>
+  <div class="responsive-box">
+    <p>This box adapts to available space</p>
+  </div>
+</div>`,
+                    css: `.responsive-text-demo {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+}
+.responsive-text-demo h1 {
+  font-size: clamp(24px, 5vw, 48px);
+  margin-bottom: 20px;
+}
+.responsive-paragraph {
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.responsive-box {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  max-width: 100%;
+}`
+                },
+                6: {
+                    html: `<div class="google-fonts-demo">
+  <h1 class="font-roboto">Roboto Font</h1>
+  <p class="font-poppins">Poppins Font - Modern and clean</p>
+  <p class="font-montserrat">Montserrat Font - Elegant and geometric</p>
+  <p class="font-dancing">Dancing Script - Beautiful cursive</p>
+</div>`,
+                    css: `@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;600&family=Montserrat:wght@400;600&family=Dancing+Script:wght@400;700&display=swap');
+
+.google-fonts-demo {
+  padding: 25px;
+  background: #fff;
+  border-radius: 15px;
+  text-align: center;
+}
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.5em;
+  color: #007acc;
+  margin-bottom: 15px;
+}
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+  color: #555;
+  margin-bottom: 15px;
+}
+.font-dancing {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 2em;
+  color: #e91e63;
+}`
+                }
+            };
+
+            if (examples[num]) {
+                document.getElementById('html-editor').value = examples[num].html;
+                document.getElementById('css-editor').value = examples[num].css;
+                updateLineNumbers(document.getElementById('html-editor'), document.getElementById('html-line-numbers'));
+                updateLineNumbers(document.getElementById('css-editor'), document.getElementById('css-line-numbers'));
+                applySyntaxHighlighting(document.getElementById('html-editor'), 'html');
+                applySyntaxHighlighting(document.getElementById('css-editor'), 'css');
+                updatePreview();
+            }
+        }
+        
+        function formatCode(textarea, type) {
+            let code = textarea.value;
+            
+            if (type === 'html') {
+                // Simple HTML formatting
+                let indent = 0;
+                const lines = code.split('\n');
+                const formatted = [];
+                
+                lines.forEach(line => {
+                    const trimmed = line.trim();
+                    
+                    if (trimmed.startsWith('</')) {
+                        indent = Math.max(0, indent - 1);
+                    }
+                    
+                    formatted.push('  '.repeat(indent) + trimmed);
+                    
+                    if (trimmed.startsWith('<') && !trimmed.startsWith('</') && !trimmed.endsWith('/>')) {
+                        indent++;
+                    }
+                });
+                
+                code = formatted.join('\n');
+            } else if (type === 'css') {
+                // Simple CSS formatting
+                let indent = 0;
+                const lines = code.split('\n');
+                const formatted = [];
+                
+                lines.forEach(line => {
+                    const trimmed = line.trim();
+                    
+                    if (trimmed.endsWith('}')) {
+                        indent = Math.max(0, indent - 1);
+                    }
+                    
+                    formatted.push('  '.repeat(indent) + trimmed);
+                    
+                    if (trimmed.endsWith('{')) {
+                        indent++;
+                    }
+                });
+                
+                code = formatted.join('\n');
+            }
+            
+            textarea.value = code;
+        }
+        
+        function insertTextAtCursor(textarea, text) {
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const value = textarea.value;
+            
+            textarea.value = value.substring(0, start) + text + value.substring(end);
+            textarea.selectionStart = textarea.selectionEnd = start + text.length;
+            textarea.focus();
+        }
+        
+        function autoCloseTag(textarea, e) {
+            const start = textarea.selectionStart;
+            const value = textarea.value;
+            const beforeCursor = value.substring(0, start - 1);
+            
+            // Find the last opening tag
+            const lastOpenTagMatch = beforeCursor.match(/<(\w+)[^>]*$/);
+            if (lastOpenTagMatch) {
+                const tagName = lastOpenTagMatch[1];
+                
+                // Insert closing tag
+                setTimeout(() => {
+                    insertTextAtCursor(textarea, `</${tagName}>`);
+                }, 10);
+            }
+        }
+        
+        function showCopySuccess(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'copy-success';
+            successDiv.textContent = message;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 2500);
+        }
+        
+        function triggerCelebration() {
+            const container = document.getElementById('celebration-container');
+            const text = document.getElementById('celebration-text');
+            
+            // Clear previous confetti
+            container.innerHTML = '';
+            
+            // Show celebration text
+            text.style.opacity = '1';
+            text.style.transform = 'translateX(-50%) scale(1)';
+            text.style.animation = 'pulse 1s ease infinite';
+            
+            // Add pulse animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { transform: translateX(-50%) scale(1); }
+                    50% { transform: translateX(-50%) scale(1.1); }
+                    100% { transform: translateX(-50%) scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Create confetti
+            const colors = ['#569cd6', '#9cdcfe', '#ce9178', '#d7ba7d', '#4CAF50', '#FFD700', '#e91e63', '#9c27b0'];
+            
+            for (let i = 0; i < 200; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const size = Math.random() * 12 + 3;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 3 + 2;
+                const animationDelay = Math.random() * 1;
+                
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                confetti.style.background = color;
+                confetti.style.left = left + 'vw';
+                confetti.style.opacity = '1';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                // Animation
+                confetti.style.animation = `
+                    fall ${animationDuration}s ease-in ${animationDelay}s forwards,
+                    spin ${animationDuration / 2}s linear ${animationDelay}s infinite
+                `;
+                
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, (animationDuration + animationDelay) * 1000);
+            }
+            
+            // Hide text after animation
+            setTimeout(() => {
+                text.style.opacity = '0';
+                text.style.transform = 'translateX(-50%) scale(0.5)';
+                text.style.animation = '';
+                style.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
